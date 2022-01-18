@@ -35,8 +35,8 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "django>=1.8",
-        "xhtml2pdf>=0.2b1",
+        "django>=3.0.14",
+        "xhtml2pdf>=0.2.5",
         "reportlab>=3",
         'six>=1.16.0'
     ],

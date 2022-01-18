@@ -58,11 +58,14 @@ def html_to_pdf(content, encoding="utf-8",
     :rtype: :class:`bytes`
     :raises: :exc:`~easy_pdf.exceptions.PDFRenderingError`
     """
+    logger.error('HTML_TO_PDF')
     src = BytesIO(content.encode(encoding))
     dest = BytesIO()
-
+    logger.error('BYTES_IO INIT')
     pdf = pisa.pisaDocument(src, dest, encoding=encoding,
                             link_callback=link_callback, **kwargs)
+    logger.error('DONE PISA')
+    logger.error(pdf)
     if pdf.err:
         logger.error("Error rendering PDF document")
         for entry in pdf.log:
@@ -74,7 +77,7 @@ def html_to_pdf(content, encoding="utf-8",
         for entry in pdf.log:
             if entry[0] == xhtml2pdf.default.PML_WARNING:
                 logger_x2p.warning("line %s, msg: %s, fragment: %s", entry[1], entry[2], entry[3])
-
+    logger.error('RETURNING')
     return dest.getvalue()
 
 
@@ -134,7 +137,9 @@ def render_to_pdf(template, context, using=None, request=None, encoding="utf-8",
 
     :raises: :exc:`~easy_pdf.exceptions.PDFRenderingError`, :exc:`~easy_pdf.exceptions.UnsupportedMediaPathException`
     """
+    logger.error('RENDER_TO_PDF')
     content = loader.render_to_string(template, context, request=request, using=using)
+    logger.error('CONTENT LOADED')
     return html_to_pdf(content, encoding, **kwargs)
 
 
