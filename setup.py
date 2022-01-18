@@ -9,7 +9,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-version = "0.1.2.dev1"
+version = "0.2.0"
 
 if sys.argv[-1] == "publish":
     os.system("python setup.py sdist bdist_wheel upload")
@@ -22,13 +22,13 @@ readme = open("README.rst").read()
 history = open("HISTORY.rst").read().replace(".. :changelog:", "")
 
 setup(
-    name="django-easy-pdf",
+    name="ot-django-easy-pdf",
     version=version,
     description="""Django PDF views, the easy way""",
     license="MIT",
-    author="Filip Wasilewski",
-    author_email="en@ig.ma",
-    url="https://github.com/nigma/django-easy-pdf",
+    author="Jonathan Hayes",
+    author_email="jonathanh@opentext.com",
+    url="https://github.com/otjonathanh/django-easy-pdf",
     long_description=readme + "\n\n" + history,
     packages=[
         "easy_pdf",
@@ -37,7 +37,8 @@ setup(
     install_requires=[
         "django>=1.8",
         "xhtml2pdf>=0.2b1",
-        "reportlab>=3"
+        "reportlab>=3",
+        'six>=1.16.0'
     ],
     zip_safe=False,
     keywords="django-easy-pdf",
